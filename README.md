@@ -34,11 +34,11 @@ one-dimensional interface.
 Experiments by Kolinski *et al.* [5] showed that the inviscid assumption used in
 this previous work was inaccurate. As the thin gas layer is formed, it tilts
 upward, lifting off the surface. The time at which lift-off happens is
-dependent on the liquid viscosity. For liquid viscosities from 1 cSt to 100
-cSt, Kolinski et al. observed an approximate square root dependence of lift-off
-time on viscosity.
+dependent on the liquid viscosity. For liquid viscosities from 1 cSt to
+100 cSt, Kolinski *et al.* observed an approximate square root dependence of
+lift-off time on viscosity.
 
-In this study, we developed a reduced model to study these viscous effects in
+In this study, we developed a reduced model to examine these viscous effects in
 early-time drop impact dynamics. We coupled a one-dimensional gas layer model
 to a two-dimensional simulation of the liquid using the incompressible
 [Navier–Stokes equations](https://en.wikipedia.org/wiki/Navier–Stokes_equations).
@@ -46,7 +46,8 @@ Full implementation details of the Navier–Stokes solver are given by Yu *et
 al.* [6] and Rycroft *et al.* [7]. This is more computationally expensive than
 the previous work [3,4] since the full two-dimensional flow must be resolved.
 However, with this simulation we can successfully recreate and analyze the
-viscosity dependence seen by Kolinski *et al.*
+viscosity dependence seen by Kolinski *et al.*, and explore the role of surface
+tension, impact velocity, and drop geometry.
 
 ## Compiling the code
 The code is written in C++ and uses the OpenMP library for multithreading. It has
@@ -104,8 +105,8 @@ The main program for running a drop impact simulation is called **fluid_test**.
 To run this program, it must be supplied with a text file containing the
 simulation configuration. Several samples are provided in the **sims**
 directory. A good place to start is **id_vis32.cfg**, which simulates the
-initial deceleration of a drop as it approaches a surface. This simulation
-can be run by typing
+initial deceleration of a drop as it approaches a surface—see Sec. XYZZY of the
+paper. This simulation can be run by typing
 ```Shell
 OMP_NUM_THREADS=<n> ./fluid_test sims/id_vis32.cfg
 ```
@@ -239,6 +240,7 @@ The final section of the code controls the output of the simulation:
 # (u,v) - velocity components
 # p - pressure
 # h - height
+# w - vorticity
 # fbd - flow across boundary
 output              u v p h
 ```
@@ -263,8 +265,8 @@ the following Gnuplot commands. To begin, set the axis labels and switch off
 the key:
 ```Gnuplot
 unset key
-set xlabel 'x (micrometers)'
-set ylabel 'h (micrometers)'
+set xlabel 'x (micrometer)'
+set ylabel 'h (micrometer)'
 ```
 The height profiles can be plot using the for-loop functionality in Gnuplot
 with the following command:
@@ -334,7 +336,7 @@ and scripts are provided that were used during the project.
 
 - **p_strip** – This utility processes all of the *m*&times;*n* pressure
   fields, **p**.&lt;n&gt; in the output directory, extracts the pressure field
-  at the base at *y*=0, and saves the resulting information as $m$&times;1
+  at the base at *y*=0, and saves the resulting information as *m*&times;1
   pressure field.
 
 - **t_perf.pl** – This script can be run on the terminal output of a simulation
