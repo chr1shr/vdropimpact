@@ -68,8 +68,7 @@ been tested on Linux, MacOS, and Windows (via [Cygwin](https://www.cygwin.com)).
   GitHub](http://github.com/chr1shr/utils-gp).
 
 - The utils-gp repository requires [libpng](http://www.libpng.org/pub/png/) for
-  making for full functionality, but this dependency can be omitted. To make
-  movies of the simulation output [FFmpeg](https://ffmpeg.org) is needed.
+  making for full functionality, but this dependency can be omitted.
 
 By default the code assumes that the **vdropimpact**, **tgmg**, **utils-gp**
 repositories are placed in the same parent directory.
@@ -276,15 +275,19 @@ plot for [k=0:250:20] sprintf('id_vis32.odr/height.%d',k) u ($1*a):($3*a) matrix
 Here, the variable `a=1e6` is used to convert the values in the file from
 meters into micrometers. This will produce a plot shown below:
 
+![Plots of the height profile over time](https://people.seas.harvard.edu/~chr/software/vdi_graph1.png)
+
 This shows the overall behavior of the simulation, where initially parabolic
 height profile deforms as it approaches the surface. To see the thin gas
 layer in more detail, the axes can be changed:
 ```Gnuplot
 set xrange [150:550]
-set yrange [0:1
+set yrange [0:1]
 plot for [k=0:250:10] sprintf('id_vis32.odr/height.%d',k) u ($1*a):($3*a) matrix binary
 ```
 This produces the plot shown below:
+
+![Zoomed-in plots of the height profile over time](https://people.seas.harvard.edu/~chr/software/vdi_graph2.png)
 
 The lift-off behavior can be observed at approximately *x*=330 &mu;m. Even
 though lift-off can be clearly seen, the grid resolution specified in
@@ -338,8 +341,6 @@ and scripts are provided that were used during the project.
   that was run with the `mr_time_output` option that created machine-readable
   timing information. The script prints statistics about the time taken in
   different parts of the code, similar to Table XYZZY in Appendix XYZZY.
-
-- **gnuplot_movie.pl** –
 
 - **sims/create_cfg.pl** – In the paper, many sweeps of simulations were
   performed using ranges of different viscosities. This script can be used
@@ -416,9 +417,6 @@ Two known regimes with problems are follows:
 
 - For very low viscosities (*i.e.* below 2 cSt), a numerical instability
   emerges at the far end of the grid.
-
-## Contact
-For questions about the code, contact [Chris Rycroft](http://seas.harvard.edu/~chr/).
 
 ## Bibliography
 1. Arthur M. Worthington, *XXVIII. On the forms assumed by drops of liquids

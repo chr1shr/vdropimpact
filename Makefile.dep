@@ -1,28 +1,28 @@
 common.o: common.cc common.hh
 fluid_2d.o: fluid_2d.cc common.hh fluid_2d.hh fields.hh fileinfo.hh \
- gas_layer.hh ../../tgmg/tgmg.hh ../../tgmg/tgmg_config.hh \
- ../../tgmg/tgmg_predict.hh mgs_mac.hh mgs_common.hh mgs_fem.hh \
+ gas_layer.hh ../tgmg/tgmg.hh ../tgmg/tgmg_config.hh \
+ ../tgmg/tgmg_predict.hh mgs_mac.hh mgs_common.hh mgs_fem.hh \
  visco_impl.hh
 fluid_2d_sio.o: fluid_2d_sio.cc common.hh fluid_2d.hh fields.hh \
- fileinfo.hh gas_layer.hh ../../tgmg/tgmg.hh ../../tgmg/tgmg_config.hh \
- ../../tgmg/tgmg_predict.hh mgs_mac.hh mgs_common.hh mgs_fem.hh \
+ fileinfo.hh gas_layer.hh ../tgmg/tgmg.hh ../tgmg/tgmg_config.hh \
+ ../tgmg/tgmg_predict.hh mgs_mac.hh mgs_common.hh mgs_fem.hh \
  visco_impl.hh
-mgs_common.o: mgs_common.cc mgs_common.hh ../../tgmg/tgmg.hh \
- ../../tgmg/tgmg_config.hh ../../tgmg/tgmg_predict.hh ../../tgmg/tgmg.cc \
- ../../tgmg/tgmg.hh
-mgs_mac.o: mgs_mac.cc mgs_mac.hh common.hh ../../tgmg/tgmg.hh \
- ../../tgmg/tgmg_config.hh ../../tgmg/tgmg_predict.hh mgs_common.hh \
- fluid_2d.hh fields.hh fileinfo.hh gas_layer.hh mgs_fem.hh visco_impl.hh \
- ../../tgmg/tgmg.cc ../../tgmg/tgmg.hh
-mgs_fem.o: mgs_fem.cc mgs_fem.hh common.hh ../../tgmg/tgmg.hh \
- ../../tgmg/tgmg_config.hh ../../tgmg/tgmg_predict.hh mgs_common.hh \
- fluid_2d.hh fields.hh fileinfo.hh gas_layer.hh mgs_mac.hh visco_impl.hh \
- ../../tgmg/tgmg.cc ../../tgmg/tgmg.hh
+mgs_common.o: mgs_common.cc mgs_common.hh ../tgmg/tgmg.hh \
+ ../tgmg/tgmg_config.hh ../tgmg/tgmg_predict.hh ../tgmg/tgmg.cc \
+ ../tgmg/tgmg.hh
+mgs_mac.o: mgs_mac.cc mgs_mac.hh common.hh ../tgmg/tgmg.hh \
+ ../tgmg/tgmg_config.hh ../tgmg/tgmg_predict.hh mgs_common.hh fluid_2d.hh \
+ fields.hh fileinfo.hh gas_layer.hh mgs_fem.hh visco_impl.hh \
+ ../tgmg/tgmg.cc ../tgmg/tgmg.hh
+mgs_fem.o: mgs_fem.cc mgs_fem.hh common.hh ../tgmg/tgmg.hh \
+ ../tgmg/tgmg_config.hh ../tgmg/tgmg_predict.hh mgs_common.hh fluid_2d.hh \
+ fields.hh fileinfo.hh gas_layer.hh mgs_mac.hh visco_impl.hh \
+ ../tgmg/tgmg.cc ../tgmg/tgmg.hh
 bi_interp.o: bi_interp.cc bi_interp.hh
-visco_impl.o: visco_impl.cc visco_impl.hh ../../tgmg/tgmg.hh \
- ../../tgmg/tgmg_config.hh ../../tgmg/tgmg_predict.hh mgs_common.hh \
- fluid_2d.hh common.hh fields.hh fileinfo.hh gas_layer.hh mgs_mac.hh \
- mgs_fem.hh ../../tgmg/tgmg.cc ../../tgmg/tgmg.hh
+visco_impl.o: visco_impl.cc visco_impl.hh ../tgmg/tgmg.hh \
+ ../tgmg/tgmg_config.hh ../tgmg/tgmg_predict.hh mgs_common.hh fluid_2d.hh \
+ common.hh fields.hh fileinfo.hh gas_layer.hh mgs_mac.hh mgs_fem.hh \
+ ../tgmg/tgmg.cc ../tgmg/tgmg.hh
 tri_solve.o: tri_solve.cc tri_solve.hh
 gas_layer.o: gas_layer.cc gas_layer.hh common.hh fields.hh
 gas_layer_data.o: gas_layer_data.cc common.hh gas_layer_data.hh \

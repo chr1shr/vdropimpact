@@ -1,7 +1,7 @@
-include ../../config.mk
+include ../config.mk
 
-iflags=-I../../tgmg -I../../shared
-lflags=-L../../shared -L.
+iflags=-I../tgmg -I../utils-gp
+lflags=-L../utils-gp -L.
 objs=common.o fluid_2d.o fluid_2d_sio.o mgs_common.o mgs_mac.o mgs_fem.o \
 	 bi_interp.o visco_impl.o tri_solve.o gas_layer.o gas_layer_data.o \
 	 gas_layer_solve.o fileinfo.o
@@ -9,8 +9,8 @@ src=$(patsubst %.o,%.cc,$(objs))
 execs=mg_test fluid_test edges tri_test h_analysis tt_analysis p_strip
 
 all:
-	$(MAKE) -C ../../shared
-	$(MAKE) -C ../../tgmg lib
+	$(MAKE) -C ../utils-gp
+	$(MAKE) -C ../tgmg lib
 	$(MAKE) executables
 	
 executables: $(execs)
