@@ -475,7 +475,7 @@ inline void fluid_2d::godunov_set_tang(double &u0,double &u1,double &v0,double &
     u1=0;
 }
 
-/** Sets the extrapolated edge velocities to zero. For the splashing problem,
+/** Sets the extrapolated edge velocities to zero. For the drop impact problem,
  * it is only needed at the x=0 boundary for the symmetrized case. */
 void fluid_2d::zero_edge_velocities() {
     if(x_sym) for(field *fp=fm,*fe=fp+n*ml;fp<fe;fp+=ml) fp->ul=0;

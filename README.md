@@ -397,12 +397,11 @@ The three linear systems are then defined via three classes:
   implemented using a finite-element discretization [12] using a bilinear hat
   function basis [6,7].
 
-- **visco_impl** describes the linear system arising from the the liquid
-  viscous term using an implicit Crank–Nicolson discretization. The
-  code creates two separate versions of this class for solving for the *x*
-  and *y* velocity components. The linear systems for the two components are
-  near-identical apart from a small difference in the boundary condition
-  implementation.
+- **visco_impl** describes the linear system arising from the liquid viscous
+  term using an implicit Crank–Nicolson discretization. The code creates two
+  separate versions of this class for solving for the *x* and *y* velocity
+  components. The linear systems for the two components are near-identical
+  apart from a small difference in the boundary condition implementation.
 
 ## Known issues
 The code has been tested over a wide range of different parameter choices.

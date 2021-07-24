@@ -8,7 +8,7 @@
 #include "fluid_2d.hh"
 
 /** This source code file contains routines in the fluid_2d class that are
- * splash-specific or are related to input & output. */
+ * specific to drop impact, or are related to input & output. */
 
 /** Initializes the simulation fields. */
 void fluid_2d::init_fields() {
