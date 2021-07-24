@@ -57,19 +57,19 @@ been tested on Linux, MacOS, and Windows (via [Cygwin](https://www.cygwin.com)).
   geometric multigrid method [8,9], which is available as a
   [separate repository on GitHub](http:/github.com/chr1shr/tgmg).
 
-- The code requires [LAPACK](http://www.netlib.org/lapack/) for solving a
-  tridiagonal linear system arising in the gas layer description. LAPACK is
-  often installed by default on many new operating systems, and is available
-  via many software package management systems.
-
 - The code outputs data in a binary format that can be read by the freeware
-  plotting program [Gnuplot](http://www.gnuplot.info). The code uses a
+  plotting program [Gnuplot](http://www.gnuplot.info). The code uses
   utils-gp, a collection of tools for processing and analyzing Gnuplot output
   files. This is available as a [separate repository on
   GitHub](http://github.com/chr1shr/utils-gp).
 
 - The utils-gp repository requires [libpng](http://www.libpng.org/pub/png/) for
   making for full functionality, but this dependency can be omitted.
+
+- The code requires [LAPACK](http://www.netlib.org/lapack/) for solving a
+  tridiagonal linear system arising in the gas layer description. LAPACK is
+  often installed by default on many new operating systems, and is available
+  via many software package management systems.
 
 By default the code assumes that the **vdropimpact**, **tgmg**, **utils-gp**
 repositories are placed in the same parent directory.
