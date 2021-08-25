@@ -105,7 +105,7 @@ The main program for running a drop impact simulation is called **fluid_test**.
 To run this program, it must be supplied with a text file containing the
 simulation configuration. Several samples are provided in the **sims**
 directory. A good place to start is **id_vis32.cfg**, which simulates the
-initial deceleration of a drop as it approaches a surface—see Sec. XYZZY of the
+initial deceleration of a drop as it approaches a surface—see Sec. 4.1 of the
 paper. This simulation can be run by typing
 ```Shell
 OMP_NUM_THREADS=<n> ./fluid_test sims/id_vis32.cfg
@@ -129,7 +129,7 @@ aspect ratio of the simulation.
 The next three parameters are non-dimensionalized and set the size of
 the simulation, the initial height of the drop above the surface, and the
 simulation duration. Formulae for linking them to physical units are provided
-in Sec. XYZZY of the paper.
+in Sec. 2.4 of the paper.
 
 The next section of the input file contains parameters relating to the
 computation:
@@ -191,17 +191,18 @@ x_sym
 implicit_visc
 gas_layer_model
 ```
-As described in Sec. XYZZY of the paper the simulation domain is symmetric
+As described in Sec. 2.2 of the paper the simulation domain is symmetric
 about *x*=0. The `x_sym` option halves the simulation domain from [-*L*,*L*]
 to [0,*L*] and uses symmetry boundary conditions at *x*=0.
 
 The `implicit_visc` option handles the viscous term in the Navier–Stokes
-equations using an implicit Crank–Nicolson discretization. This removes
-a timestep restriction that scales quadratically with the grid spacing. The
+equations using an implicit Crank–Nicolson discretization. This removes a
+timestep restriction that scales quadratically with the grid spacing. The
 `gas_layer_model` calculates the fields in the gas layer using the PDE model
-given in Sec. XYZZY of the paper. There is also another option called
-`gas_layer_data` used for testing purposes, where the boundary is updated
-according to a pre-computed table of data.
+given in Sec. 2.2 of the paper, following the numerical methods described in
+Sec. 3.3. There is also another option called `gas_layer_data` used for testing
+purposes, where the boundary is updated according to a pre-computed table of
+data.
 
 An additional option called `mr_time_output` can be specified that makes the
 command-line utility output timing statistics in a machine-readable format.
@@ -294,7 +295,7 @@ This produces the plot shown below:
 The lift-off behavior can be observed at approximately *x*=330 &mu;m. Even
 though lift-off can be clearly seen, the grid resolution specified in
 **id_vis32.cfg** is relatively coarse and in the paper it is only used to study
-the initial dynamics in Sec. XYZZY. See the other examples **lo_vis10.cfg**,
+the initial dynamics in Sec. 4.1. See the other examples **lo_vis10.cfg**,
 **ld_vis32.cfg**, and **ld_vis100.cfg** for configuring a higher-resolution
 simulation for better accuracy in computing the lift-off behavior.
 
@@ -342,7 +343,7 @@ and scripts are provided that were used during the project.
 - **t_perf.pl** – This script can be run on the terminal output of a simulation
   that was run with the `mr_time_output` option that created machine-readable
   timing information. The script prints statistics about the time taken in
-  different parts of the code, similar to Table XYZZY in Appendix XYZZY.
+  different parts of the code, similar to Table 4 in Appendix B.
 
 - **sims/create_cfg.pl** – In the paper, many sweeps of simulations were
   performed using ranges of different viscosities. This script can be used
@@ -363,7 +364,7 @@ The code is structured around several C++ classes:
   the pressure and tangential stress that are required for coupling to the liquid.
   It is a pure virtual class that has two different options.
   **gas_layer_model** updates the gas layer according to the partial
-  differential equation in Sec. XYZZY of the paper. **gas_layer_data** is an
+  differential equation in Sec. 2.2 of the paper. **gas_layer_data** is an
   alternative that loads a precomputed table of pressures and tangential
   stresses to apply to the liquid; it was used during development of the code but
   is not referenced in the paper.
@@ -414,7 +415,7 @@ Two known regimes with problems are follows:
 
 - If the initial velocity is low, and the liquid viscosity is low, then
   the height profile may develop capillary waves and progressively sharp
-  features as shown in Fig. XYZZY of the paper.
+  features as shown in Fig. 15 of the paper.
 
 - For very low viscosities (*i.e.* below 2 cSt), a numerical instability
   emerges at the far end of the grid.
