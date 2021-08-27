@@ -1,14 +1,12 @@
 # VDropImpact: A simulation of viscous effects in early-time drop impact dynamics
-**Note: this is currently in development and some references are incomplete
-at present.**
-
 This repository contains a C++ code for simulating a reduced model of the
 initial dynamics of when a drop of liquid impacts a horizontal surface. In
-particular it can be used to explore the effects of liquid viscosity on
-this process. It supports the following scientific publication:
+particular it can be used to explore the effects of liquid viscosity on this
+process. It supports the following scientific publication:
 
 - Shruti Mishra, Shmuel M. Rubinstein, and Chris H. Rycroft, *Computing
-  the viscous effect in early drop impact dynamics*, arXiv:XYZZY (2021).
+  the viscous effect in early drop impact dynamics*,
+  [arXiv:2108.11497](https://arxiv.org/abs/2108.11497) (2021).
 
 ## Background
 Understanding how liquid drops impact and splash on contact with solid surfaces
