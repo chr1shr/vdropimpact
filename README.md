@@ -146,7 +146,7 @@ sets how many tracers to use. Tracers have no effect on the simulation itself.
 the simulation duration. `tmult` controls the size of the timestep. When the
 viscous term in the Navier–Stokes equation is handled implicitly, the timestep
 is chosen as proportional to the grid spacing &Delta;*x*. Otherwise the timestep
-is proportional to &Delta;*x*&sup2;
+is proportional to &Delta;*x*&sup2;.
 
 The code can output restart files that save a snapshot of all simulation fields
 at full precision. The code can be resumed from a restart file by passing the
@@ -169,7 +169,8 @@ V                   0.45
 ```
 Two different options `nul` and `nul_cSt` can be used to specify the liquid
 kinematic viscosity, using two different units. The next section sets the
-physical parameters for the gas layer in physical units:
+physical parameters for the gas layer and the liquid--gas interface in physical 
+units:
 ```
 # Gas parameters:
 # gamma - exponent in equation of state
