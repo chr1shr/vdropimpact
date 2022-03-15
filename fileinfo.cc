@@ -106,11 +106,15 @@ fileinfo::fileinfo(const char* infile) : m(-1), fflags(0), ntrace(0),
                 if(se(bp,"u")) fflags|=1;
                 else if(se(bp,"v")) fflags|=2;
                 else if(se(bp,"p")) fflags|=4;
-                else if(se(bp,"w")) fflags|=8;
-                else if(se(bp,"h")) fflags|=16;
-                else if(se(bp,"fbd")) fflags|=32;
-                else if(se(bp,"hfull")) fflags|=64;
-                else if(se(bp,"fbdfull")) fflags|=128;
+                else if(se(bp,"pb")) fflags|=8;
+                else if(se(bp,"pbfull")) fflags|=16;
+                else if(se(bp,"w")) fflags|=32;
+                else if(se(bp,"h")) fflags|=64;
+                else if(se(bp,"fbd")) fflags|=128;
+                else if(se(bp,"pg")) fflags|=256;
+                else if(se(bp,"hfull")) fflags|=512;
+                else if(se(bp,"fbdfull")) fflags|=1024;
+                else if(se(bp,"pgfull")) fflags|=2048;
                 else fatal_error("Output type not understood",1);
                 bp=strtok(NULL," \t\n");
             }

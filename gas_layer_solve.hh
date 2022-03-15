@@ -70,8 +70,8 @@ class gas_layer_solve: public gas_layer, public gl_params {
         void update_height(double dt);
         virtual void init_fields();
         virtual void set_field_pointer(field* fm_) {fm=fm_;fb=fm-ml;}
-        virtual void output_profile(const char *filename,float *buf,int sn,double ay,bool height);
-        virtual void output_profile_double(const char *filename,float *buf,int sn,bool height);
+        virtual void output_profile(const char *filename,float *buf,int sn,double ay,int fld);
+        virtual void output_profile_double(const char *filename,float *buf,int sn,int fld);
     protected:
         virtual void calc_p_and_tau(double t,double dt);
         virtual void load_restart_internal(double time,FILE *inf);

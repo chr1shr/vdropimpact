@@ -339,6 +339,10 @@ and scripts are provided that were used during the project.
   at the base at *y*=0, and saves the resulting information as *m*&times;1
   pressure field.
 
+- **collate** - This utility takes the one-dimensional height fields or gas
+  pressure fields, and collates them into a two-dimensional Gnuplot binary
+  matrix format in the (*x*,*t*) space.
+
 - **t_perf.pl** – This script can be run on the terminal output of a simulation
   that was run with the `mr_time_output` option that created machine-readable
   timing information. The script prints statistics about the time taken in

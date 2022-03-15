@@ -50,8 +50,8 @@ class gas_layer {
         }
         virtual void init_fields() = 0;
         virtual void set_field_pointer(field *fm_) = 0;
-        virtual void output_profile(const char *filename,float *buf,int sn,double ay,bool height) {}
-        virtual void output_profile_double(const char *filename,float *buf,int sn,bool height) {}
+        virtual void output_profile(const char *filename,float *buf,int sn,double ay,int fld) {}
+        virtual void output_profile_double(const char *filename,float *buf,int sn,int fld) {}
     protected:
         virtual void calc_p_and_tau(double t,double dt) = 0;
         virtual void load_restart_internal(double time,FILE *inf) = 0;

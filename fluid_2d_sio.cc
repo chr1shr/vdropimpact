@@ -150,13 +150,37 @@ void fluid_2d::write_files(int k) {
     if(fflags&1) output("u",0,k,true);
     if(fflags&2) output("v",1,k,true);
     if(fflags&4) output("p",2,k);
-    if(fflags&8) output("w",3,k);
-    if(fflags&16) gl->output_profile(filename,buf,k,ay,true);
-    if(fflags&32) gl->output_profile(filename,buf,k,ay,false);
-    if(fflags&64) gl->output_profile_double(filename,buf,k,true);
-    if(fflags&128) gl->output_profile_double(filename,buf,k,false);
+    if(fflags&8) output("pb",3,k);
+    if(fflags&16) output_pbase_full(k);
+    if(fflags&32) output("w",4,k);
+    if(fflags&64) gl->output_profile(filename,buf,k,ay,0);
+    if(fflags&128) gl->output_profile(filename,buf,k,ay,1);
+    if(fflags&256) gl->output_profile(filename,buf,k,ay,2);
+    if(fflags&512) gl->output_profile_double(filename,buf,k,0);
+    if(fflags&1024) gl->output_profile_double(filename,buf,k,1);
+    if(fflags&2048) gl->output_profile_double(filename,buf,k,2);
     if(ntrace>0) output_tracers(k);
     if(restart_freq>0&&k>0&&k%restart_freq==0) save_restart(k);
+}
+
+/** Outputs the pressure at the base in a custom double precision format.
+ * \param[in] sn the current frame number to append to the filename. */
+void fluid_2d::output_pbase_full(const int sn) {
+
+    // Open the file and output the header information
+    FILE *outf=odir_open("pbfull",sn,"wb");
+    fwrite(&me,sizeof(int),1,outf);
+    fwrite(&ax,sizeof(double),1,outf);
+    fwrite(&bx,sizeof(double),1,outf);
+
+    // Output the field values
+    double *pr=new double[me];
+    for(int o=0;o<me;o++) pr[o]=fm[o].p;
+    fwrite(pr,sizeof(double),me,outf);
+
+    // Close the file and remove the temporary memory
+    fclose(outf);
+    delete [] pr;
 }
 
 /** Outputs a 2D array to a file in a format that can be read by Gnuplot.
@@ -169,7 +193,7 @@ void fluid_2d::output(const char *prefix,const int mode,const int sn,const bool 
     // Determine whether to output a cell-centered field or not
     bool cen=mode>=0&&mode<=1;
     int li=ghost?ml:(cen?m:m+1),
-        lj=ghost?n+4:(cen?n:n+1);
+        lj=mode==3?1:(ghost?n+4:(cen?n:n+1));
     double disp=(cen?0.5:0)-(ghost?2:0);
 
     // Output the first line of the file
@@ -188,8 +212,9 @@ void fluid_2d::output(const char *prefix,const int mode,const int sn,const bool 
         switch(mode) {
             case 0: while(bp<be) *(bp++)=(fp++)->u;break;
             case 1: while(bp<be) *(bp++)=(fp++)->v;break;
-            case 2: while(bp<be) *(bp++)=(fp++)->p;break;
-            case 3: while(bp<be) *(bp++)=vorticity(fp++);
+            case 2:
+            case 3: while(bp<be) *(bp++)=(fp++)->p;break;
+            case 4: while(bp<be) *(bp++)=vorticity(fp++);
         }
         fwrite(buf,sizeof(float),li+1,outf);
     }

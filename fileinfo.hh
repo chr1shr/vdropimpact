@@ -1,6 +1,7 @@
 #ifndef VDI_FILEINFO_HH
 #define VDI_FILEINFO_HH
 
+#include <cstdio>
 #include <cstdlib>
 #include <cmath>
 #include <cstring>

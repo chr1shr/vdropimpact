@@ -70,6 +70,7 @@ class fluid_2d : public fileinfo {
         void init_tracers();
         void update_tracers(double dt);
         void output(const char *prefix,const int mode,int sn,bool ghost=false);
+        void output_pbase_full(int sn);
         void output_tracers(const int sn);
         void set_nif_mode(int mode,double w=0);
         /** Chooses a timestep size that is the largest value smaller than dt_reg,

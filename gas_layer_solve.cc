@@ -253,26 +253,28 @@ void gas_layer_solve::calculate_liquid_fields() {
  * \param[in] buf a pointer to temporary space to assemble the output filename.
  * \param[in] sn the current frame number to append to the filename.
  * \param[in] ay the y position of the gas layer.
- * \param[in] height whether to output the height profile, or the flow across
- *                   the boundary. */
-void gas_layer_solve::output_profile(const char *filename,float *buf,int sn,double ay,bool height) {
+ * \param[in] fld which field to output (0: height, 1: flow across the
+ *                boundary, 2: gas pressure relative to ambient pressure). */
+void gas_layer_solve::output_profile(const char *filename,float *buf,int sn,double ay,int fld) {
 
     // Assemble the output filename and open the output file
     char *bufc=reinterpret_cast<char*>(buf);
-    sprintf(bufc,height?"%s/height.%d":"%s/fbd.%d",filename,sn);
+    sprintf(bufc,fld==0?"%s/height.%d":
+                (fld==1?"%s/fbd.%d":"%s/pg.%d"),filename,sn);
     FILE *outf=safe_fopen(bufc,"wb");
 
     // Output the first line of the file
-    float *bp=buf+1,*be=bp+m;
-    *buf=m;
-    for(int i=0;i<m;i++) *(bp++)=ax+(i+0.5)*dx;
-    fwrite(buf,sizeof(float),m+1,outf);
+    int l=fld==2?me:m;
+    float *bp=buf+1,*be=bp+l;
+    *buf=l;
+    for(int i=0;i<l;i++) *(bp++)=ax+(i+(fld==2?0:0.5))*dx;
+    fwrite(buf,sizeof(float),l+1,outf);
 
     // Output the field values to the file
     *buf=ay;bp=buf+1;
-    double *hp=height?h:fbd;
+    double *hp=fld==0?h:(fld==1?fbd:pg);
     while(bp<be) *(bp++)=*(hp++);
-    fwrite(buf,sizeof(float),m+1,outf);
+    fwrite(buf,sizeof(float),l+1,outf);
 
     // Close the file
     fclose(outf);
@@ -283,21 +285,23 @@ void gas_layer_solve::output_profile(const char *filename,float *buf,int sn,doub
  * \param[in] filename the filename of the output directory.
  * \param[in] buf a pointer to temporary space to assemble the output filename.
  * \param[in] sn the current frame number to append to the filename.
- * \param[in] height whether to output the height profile, or the flow across
- *                   the boundary. */
-void gas_layer_solve::output_profile_double(const char *filename,float *buf,int sn,bool height) {
+ * \param[in] fld which field to output (0: height, 1: flow across the
+ *                boundary, 2: gas pressure relative to ambient pressure). */
+void gas_layer_solve::output_profile_double(const char *filename,float *buf,int sn,int fld) {
 
     // Assemble the output filename and open the output file
     char *bufc=reinterpret_cast<char*>(buf);
-    sprintf(bufc,height?"%s/hfull.%d":"%s/fbdfull.%d",filename,sn);
+    sprintf(bufc,fld==0?"%s/hfull.%d":
+                (fld==1?"%s/fbdfull.%d":"%s/pgfull.%d"),filename,sn);
     FILE *outf=safe_fopen(bufc,"wb");
 
     // Output coordinate information
-    fwrite(&m,sizeof(int),1,outf);
+    int l=fld==2?me:m;
+    fwrite(&l,sizeof(int),1,outf);
     fwrite(&ax,sizeof(double),2,outf);
 
     // Output the field values
-    fwrite(height?h:fbd,sizeof(double),m,outf);
+    fwrite(fld==0?h:(fld==1?fbd:pg),sizeof(double),l,outf);
 
     // Close the file
     fclose(outf);

@@ -6,7 +6,7 @@ objs=common.o fluid_2d.o fluid_2d_sio.o mgs_common.o mgs_mac.o mgs_fem.o \
 	 bi_interp.o visco_impl.o tri_solve.o gas_layer.o gas_layer_data.o \
 	 gas_layer_solve.o fileinfo.o
 src=$(patsubst %.o,%.cc,$(objs))
-execs=mg_test fluid_test edges tri_test h_analysis tt_analysis p_strip
+execs=mg_test fluid_test edges tri_test h_analysis tt_analysis p_strip collate
 
 all:
 	$(MAKE) -C ../utils-gp
@@ -44,6 +44,9 @@ tt_analysis: tt_analysis.cc libf2d.a
 
 p_strip: p_strip.cc common.o
 	$(cxx) $(cflags) $(iflags) $(lflags) -o $@ $^ -lgpmtx $(png_lflags)
+
+collate: collate.cc libf2d.a
+	$(cxx) $(cflags) $(iflags) $(lflags) -o $@ $^ $(lp_lflags)
 
 data:
 	rsync -rvz olympus.seas.harvard.edu:/data/files/splash/\* .
