@@ -5,8 +5,9 @@ particular it can be used to explore the effects of liquid viscosity on this
 process. It supports the following scientific publication:
 
 - Shruti Mishra, Shmuel M. Rubinstein, and Chris H. Rycroft, *Computing
-  the viscous effect in early drop impact dynamics*,
-  [arXiv:2108.11497](https://arxiv.org/abs/2108.11497) (2021).
+  the viscous effect in early drop impact dynamics*, J. Fluid Mech **945**,
+  A13 (2022). [doi:10.1017/jfm.2022.445](https://doi.org/10.1017/jfm.2022.445).
+  [arXiv:2108.11497](https://arxiv.org/abs/2108.11497).
 
 ## Background
 Understanding how liquid drops impact and splash on contact with solid surfaces
