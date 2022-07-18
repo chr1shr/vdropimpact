@@ -278,7 +278,7 @@ plot for [k=0:250:20] sprintf('id_vis32.odr/height.%d',k) u ($1*a):($3*a) matrix
 Here, the variable `a=1e6` is used to convert the values in the file from
 meters into micrometers. This will produce a plot shown below:
 
-![Plots of the height profile over time](https://people.seas.harvard.edu/~chr/software/vdi_graph1.png)
+![Plots of the height profile over time](https://people.math.wisc.edu/~chr/software/vdi_graph1.png)
 
 This shows the overall behavior of the simulation, where initially parabolic
 height profile deforms as it approaches the surface. To see the thin gas
@@ -290,7 +290,7 @@ plot for [k=0:250:10] sprintf('id_vis32.odr/height.%d',k) u ($1*a):($3*a) matrix
 ```
 This produces the plot shown below:
 
-![Zoomed-in plots of the height profile over time](https://people.seas.harvard.edu/~chr/software/vdi_graph2.png)
+![Zoomed-in plots of the height profile over time](https://people.math.wisc.edu/~chr/software/vdi_graph2.png)
 
 The lift-off behavior can be observed at approximately *x*=330 &mu;m. Even
 though lift-off can be clearly seen, the grid resolution specified in
