@@ -13,7 +13,7 @@ process. It supports the following scientific publication:
 Understanding how liquid drops impact and splash on contact with solid surfaces
 has been the subject of scientific research for over a century. Experiments
 performed by Worthington in 1877 demonstrated the wide variety of patterns
-formed by drops falling on a plate, even before the invention a flash
+formed by drops falling on a plate, even before the invention of flash
 photography [1]. Since then, drop impact has been the subject of a wide range
 of theoretical, computational, and experimental studies [2].
 
